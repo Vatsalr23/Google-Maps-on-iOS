@@ -23,28 +23,25 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
     }
     
-    func getAddress(atCoordinate coordinate: CLLocationCoordinate2D)
+    func getAddress(atCoordinate coordinate: CLLocationCoordinate2D,updateMarker marker: GMSMarker)
     {
         let geocoder = GMSGeocoder()
-        
         geocoder.reverseGeocodeCoordinate(coordinate){ response, error in
             if let address = response?.firstResult(){
                 self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0,bottom: 45, right: 0)
-                let lines = address.lines!
-                self.streetAddressLabel.text = lines[0]
+                let line = address.lines![0]
+                self.streetAddressLabel.text = line
+                marker.title = line
             }
         }
     }
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        getAddress(atCoordinate: position.target)
+        let marker = GMSMarker(position: position.target)
+        getAddress(atCoordinate: position.target,updateMarker: marker)
         
         mapView.clear()
-        
-        let marker = GMSMarker(position: position.target)
         marker.map = mapView
-        marker.title = "Current Location"
-        
     }
     
     override func didReceiveMemoryWarning() {
