@@ -42,6 +42,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         mapView.clear()
         marker.map = mapView
+        marker.snippet = "Current Location"
     }
     
     override func didReceiveMemoryWarning() {

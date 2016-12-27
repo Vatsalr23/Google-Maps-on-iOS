@@ -25,6 +25,7 @@ class MapFunctions: NSObject
     
     var destinationAddress: String!
     
+    /*
     func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((_ status: String, _ success: Bool) -> Void)) {
         if let originLocation = origin {
             if let destinationLocation = destination {
@@ -40,5 +41,6 @@ class MapFunctions: NSObject
             completionHandler("Origin is nil", false)
         }
     }
+    */
     
 }
